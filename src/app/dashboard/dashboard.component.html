@@ -1,0 +1,10 @@
+<h2>Top Items</h2>
+<div class="items-menu">
+    <a *ngFor="let item of items" class ="item" (change)="checkUncheck(item)">
+        <input type="checkbox" [(ngModel)]="item.checked" />
+        <!--<a routerLink="/detail/{{ item.id }}"> -->
+            <span>{{ item.name }}</span>
+            <span>{{ item.qty }}</span>
+        <!--</a>-->
+    </a>
+</div>

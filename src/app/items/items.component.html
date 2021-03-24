@@ -6,3 +6,17 @@
         <button class="delete" title="delete item">X</button>
     </li>
 </ul>
+<table class="table">
+    <tr>
+        <th>Picked</th>
+        <th>Name</th>
+        <th>Quantity</th>
+    </tr>
+    <tr *ngFor="let item of items">
+        <td>
+            <input type="checkbox" [(ngModel)]="item.checked" />
+        </td>
+        <td>{{ item.name }}</td>
+        <td>{{ item.qty }}</td>
+    </tr>
+</table>

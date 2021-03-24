@@ -13,9 +13,20 @@ export class ItemService {
 
   private itemsUrl = 'api/items'; // URL to web api
 
+  httpOptions = {
+    headers: new HttpHeaders({ 'content-Type': 'application/json'})
+  }
+
   constructor(private http: HttpClient) { }
 
   getItems(): Observable<Item[]> {
     return this.http.get<Item[]>(this.itemsUrl)
   }
+
+  updateItem(item: Item): Observable<any>{
+    return this.http.put<Item>(this.itemsUrl, item, this.httpOptions)
+  }
+
+
+
 }
