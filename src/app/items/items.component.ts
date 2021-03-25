@@ -11,6 +11,7 @@ import {ItemService } from '../item.service';
 export class ItemsComponent implements OnInit {
 
   items: Item[] = [];
+  filteredItems: Item[] = [];
 
   constructor(private itemService: ItemService) { }
 
@@ -20,7 +21,29 @@ export class ItemsComponent implements OnInit {
 
   getItems(): void {
     this.itemService.getItems()
-      .subscribe(items => this.items = items);
+      .subscribe(items => {this.items = items; this.filteredItems = items});
+  }
+
+  checkUncheck(item: Item): void {
+    this.itemService.updateItem(item)
+      .subscribe(() => this.getItems());
+  }
+
+  itemsFilter(filter: string) {
+    switch(filter) {
+      case 'all':
+        console.log("All");
+        this.filteredItems = this.items
+        break;
+      case 'unchecked':
+        console.log("Unchecked");
+        this.filteredItems = this.items.filter(itemObj => itemObj.checked == false)
+        break;
+      case 'checked':
+        console.log("Checked");
+        this.filteredItems = this.items.filter(itemObj => itemObj.checked == true)
+        break;
+    }
   }
 
 }

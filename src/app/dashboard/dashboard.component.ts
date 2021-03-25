@@ -13,7 +13,7 @@ export class DashboardComponent implements OnInit {
 
   items: Item[] = []
 
-  constructor(private itemsService: ItemService) { }
+  constructor(private itemService: ItemService) { }
 
   ngOnInit(): void {
     this.getItems();
@@ -21,7 +21,7 @@ export class DashboardComponent implements OnInit {
 
   getItems(): void {
     this.items = [];
-    this.itemsService.getItems()
+    this.itemService.getItems()
     .subscribe(
       items => this.items = items,
       err => console.error(err),
@@ -30,12 +30,12 @@ export class DashboardComponent implements OnInit {
   }
 
   filterChecked() {
-    this.items = this.items.filter(item => item.checked == false);
+    this.items = this.items.filter(itemObj => itemObj.checked == false);
     this.items = this.items.slice(0,4);
   }
 
   checkUncheck(item: Item): void {
-    this.itemsService.updateItem(item)
+    this.itemService.updateItem(item)
       .subscribe(() => this.getItems());
   }
 

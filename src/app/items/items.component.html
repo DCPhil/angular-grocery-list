@@ -1,22 +1,24 @@
 <h2>Grocery Items</h2>
-<ul class="items">
-    <li *ngFor="let item of items">
-        <input type="checkbox" [(ngModel)]="item.checked" />
-        <span class="badge">{{ item.name }}</span> {{ item.qty }}
-        <button class="delete" title="delete item">X</button>
-    </li>
-</ul>
+<div class="items-filter">
+    <button (click)="itemsFilter('all')">All Items</button>
+    <button (click)="itemsFilter('unchecked')">Unchecked Items</button>
+    <button (click)="itemsFilter('checked')">Checked Items</button>
+</div>
 <table class="table">
     <tr>
         <th>Picked</th>
         <th>Name</th>
         <th>Quantity</th>
+        <th>Delete</th>
     </tr>
-    <tr *ngFor="let item of items">
-        <td>
-            <input type="checkbox" [(ngModel)]="item.checked" />
+    <tr *ngFor="let item of filteredItems">
+        <td style="width:15px">
+            <input type="checkbox" [(ngModel)]="item.checked" (change)="checkUncheck(item)" />
         </td>
-        <td>{{ item.name }}</td>
+        <td><a class="badge">{{ item.name }}</a></td>
         <td>{{ item.qty }}</td>
+        <td>
+            <button title="delete item">X</button>
+        </td>
     </tr>
 </table>
