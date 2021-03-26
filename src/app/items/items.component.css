@@ -38,6 +38,7 @@
     border-radius: 4px;
     display: block;
     width: 100%;
+    cursor: pointer;
   }
   
   .items a:hover {
@@ -66,6 +67,9 @@
     margin-right: .8em;
     border-radius: 4px 0 0 4px;
   }
+  .items-filter button {
+    cursor: pointer;
+  }
 
   .table {
     display: inline-table;
@@ -81,15 +85,13 @@
     color: white;
     background-color: #42545C;
   }
+
+  .checkbox {
+    cursor: alias;
+  }
   
   button.delete {
-    position: absolute;
-    left: 210px;
-    top: 3px;
-    background-color: white;
-    color:  #525252;
-    font-size: 1.1rem;
-    padding: 1px 10px 3px 10px;
+    cursor: pointer;
   }
   
   button.delete:hover {

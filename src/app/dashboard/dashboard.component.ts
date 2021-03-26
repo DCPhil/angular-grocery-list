@@ -12,7 +12,7 @@ import { ItemsComponent } from '../items/items.component';
 export class DashboardComponent implements OnInit {
 
   items: Item[] = []
-
+  loadingItems: boolean = false;
   constructor(private itemService: ItemService) { }
 
   ngOnInit(): void {
@@ -20,12 +20,13 @@ export class DashboardComponent implements OnInit {
   }
 
   getItems(): void {
+    this.loadingItems = true;
     this.items = [];
     this.itemService.getItems()
     .subscribe(
       items => this.items = items,
       err => console.error(err),
-      () => this.filterChecked()
+      () => {this.filterChecked();this.loadingItems = false}
     )
   }
 

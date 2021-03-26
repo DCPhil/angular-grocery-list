@@ -23,6 +23,11 @@ export class ItemService {
     return this.http.get<Item[]>(this.itemsUrl)
   }
 
+  getItem(id: number): Observable<Item> {
+    const url = `${this.itemsUrl}/${id}`;
+    return this.http.get<Item>(url);
+  }
+
   updateItem(item: Item): Observable<any>{
     return this.http.put<Item>(this.itemsUrl, item, this.httpOptions)
   }

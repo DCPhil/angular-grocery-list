@@ -3,4 +3,5 @@ export interface Item {
     name: string;
     checked: boolean;
     qty: number;
+    note: string;
 }

@@ -12,6 +12,8 @@ export class ItemsComponent implements OnInit {
 
   items: Item[] = [];
   filteredItems: Item[] = [];
+  checked: boolean = true;
+  unchecked: boolean = true;
 
   constructor(private itemService: ItemService) { }
 
@@ -32,16 +34,29 @@ export class ItemsComponent implements OnInit {
   itemsFilter(filter: string) {
     switch(filter) {
       case 'all':
-        console.log("All");
         this.filteredItems = this.items
+        this.checked = true;
+        this.unchecked = true;
         break;
       case 'unchecked':
-        console.log("Unchecked");
         this.filteredItems = this.items.filter(itemObj => itemObj.checked == false)
+        if(this.filteredItems.length == 0) {
+          this.unchecked = false;
+          this.checked = true;
+        } else {
+          this.unchecked = true;
+          this.checked = true;
+        }
         break;
       case 'checked':
-        console.log("Checked");
         this.filteredItems = this.items.filter(itemObj => itemObj.checked == true)
+        if(this.filteredItems.length == 0) {
+          this.checked = false;
+          this.unchecked = true;
+        } else {
+          this.checked = true;
+          this.unchecked = true;
+        }
         break;
     }
   }

@@ -1,0 +1,32 @@
+<div *ngIf="item">
+    <h2>{{ item.name | uppercase }} Details</h2>
+    <table class="table">
+        <tr>
+            <td>
+                <label for="item-name">Item name: </label>
+            </td>
+            <td>
+                <input id="item-name" [(ngModel)]="item.name" palceholder="name" />
+            </td>
+        </tr>
+        <br>
+        <tr>
+            <td>
+                <label for="item-qty">Item qty: </label>
+            </td>
+            <td>
+                <input id="item-qty" [(ngModel)]="item.qty" palceholder="quantity" />
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label for="item-note">Note: </label>
+            </td>
+            <td>
+                <input id="item-note" [(ngModel)]="item.note" palceholder="note" />
+            </td>
+        </tr>
+    </table>
+</div>
+<button (click)="goBack()">Go Back</button>
+<button (click)="saveItem()">Save Item</button>

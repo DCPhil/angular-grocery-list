@@ -3,9 +3,15 @@
     <button (click)="itemsFilter('all')">All Items</button>
     <button (click)="itemsFilter('unchecked')">Unchecked Items</button>
     <button (click)="itemsFilter('checked')">Checked Items</button>
-</div>
+</div><br>
 <table class="table">
-    <tr>
+    <tr *ngIf="!checked">
+        <th>No checked items!</th>
+    </tr>
+    <tr *ngIf="!unchecked">
+        <th>No unchecked items!</th>
+    </tr>
+    <tr *ngIf="checked && unchecked">
         <th>Picked</th>
         <th>Name</th>
         <th>Quantity</th>
@@ -13,12 +19,12 @@
     </tr>
     <tr *ngFor="let item of filteredItems">
         <td style="width:15px">
-            <input type="checkbox" [(ngModel)]="item.checked" (change)="checkUncheck(item)" />
+            <input class="checkbox" type="checkbox" [(ngModel)]="item.checked" (change)="checkUncheck(item)" />
         </td>
-        <td><a class="badge">{{ item.name }}</a></td>
+        <td class="items"><a routerLink="/detail/{{ item.id }}"><span>{{ item.name }}</span></a></td>
         <td>{{ item.qty }}</td>
         <td>
-            <button title="delete item">X</button>
+            <button title="delete item" class="delete">X</button>
         </td>
     </tr>
 </table>
