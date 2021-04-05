@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 
 import { Observable, of } from 'rxjs';
 
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 
 import { Item } from './item';
 
@@ -14,7 +14,7 @@ export class ItemService {
   private itemsUrl = 'api/items'; // URL to web api
 
   httpOptions = {
-    headers: new HttpHeaders({ 'content-Type': 'application/json'})
+    headers: new HttpHeaders({ 'Content-Type': 'application/json'})
   }
 
   constructor(private http: HttpClient) { }
@@ -30,6 +30,17 @@ export class ItemService {
 
   updateItem(item: Item): Observable<any>{
     return this.http.put<Item>(this.itemsUrl, item, this.httpOptions)
+  }
+
+  addItem(item: Item): Observable<Item> {
+    item.checked = false;
+    return this.http.post<Item>(this.itemsUrl, item, this.httpOptions)
+  }
+
+  deleteItem(item: Item | number): Observable<Item> {
+    const id = typeof item === 'number' ? item : item.id;
+    const url = `${this.itemsUrl}/${id}`;
+    return this.http.delete<Item>(url, this.httpOptions);
   }
 
 

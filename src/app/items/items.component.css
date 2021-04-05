@@ -71,6 +71,14 @@
     cursor: pointer;
   }
 
+  .item-add {
+    display: inline-flex;
+    align-items: center;
+  }
+  .item-add label {
+    min-width: fit-content;
+  }
+
   .table {
     display: inline-table;
   }

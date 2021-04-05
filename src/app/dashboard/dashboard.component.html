@@ -5,7 +5,7 @@
         <div class="checkbox-item">
             <input class="checkbox" type="checkbox" [(ngModel)]="item.checked" (change)="checkUncheck(item)" />
         </div>
-        <a class="item">
+        <a class="item" routerLink="/detail/{{ item.id }}">
             <span class="item-text">{{ item.name }}</span>
             <span class="item-text">{{ item.qty }}</span>
         </a>

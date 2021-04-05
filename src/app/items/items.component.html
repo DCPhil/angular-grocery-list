@@ -24,7 +24,25 @@
         <td class="items"><a routerLink="/detail/{{ item.id }}"><span>{{ item.name }}</span></a></td>
         <td>{{ item.qty }}</td>
         <td>
-            <button title="delete item" class="delete">X</button>
+            <button title="delete item" class="delete" (click)="delete(item)">X</button>
         </td>
     </tr>
 </table>
+<br>
+<div>
+    <div class="item-add">
+        <label id="new-item">Item name:  </label>
+        <input for="new-item" #itemName />
+    </div><br>
+    <div class="item-add">
+        <label id="new-qty">Item quantity:  </label>
+        <input type="number" for="new-qty" #itemQty />
+    </div><br>
+    <div class="item-add">
+        <label id="new-note">Item note:  </label>
+        <input for="new-note" #itemNote />
+    </div><br>
+    <button class="add-button" (click)="add(itemName.value, itemQty.value, itemNote.value); itemName.value=''; itemQty.value=''; itemNote.value=''">
+        Add Item
+    </button>
+</div>

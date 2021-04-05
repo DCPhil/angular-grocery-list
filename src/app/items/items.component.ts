@@ -60,5 +60,19 @@ export class ItemsComponent implements OnInit {
         break;
     }
   }
+  add(name: string,  qty: number, note: string): void {
+    name = name.trim();
+    note = note.trim();
+    this.itemService.addItem({ name, qty, note } as Item)
+      .subscribe(item => { this.items.push(item);
+      });
+  }
+
+  delete(item: Item): void {
+    console.log("Delete");
+    //this.items = this.items.filter(h=> h!==item);
+    this.itemService.deleteItem(item).subscribe();
+    this.getItems();
+  }
 
 }
