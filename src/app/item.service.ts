@@ -1,3 +1,4 @@
+// Item Service
 import { Injectable } from '@angular/core';
 
 import { Observable, of } from 'rxjs';
@@ -13,7 +14,7 @@ import { Item } from './item';
 })
 export class ItemService {
 
-  private itemsUrl = 'api/items'; // URL to web api
+  private itemsUrl = 'api/items'; // URL to in-memory web api
 
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json'})

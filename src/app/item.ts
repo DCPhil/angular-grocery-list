@@ -1,3 +1,4 @@
+// Item object
 export interface Item {
     id: number;
     name: string;
